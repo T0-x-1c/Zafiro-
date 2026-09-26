@@ -19,9 +19,9 @@ fatchData()
 function createProductCard(product) {
 
     return `
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+        <div class="lg:w-1/4 md:w-1/2 p-4 w-full max-w-[360px]">
 
-            <a class="block relative h-48 rounded overflow-hidden"
+            <a class="block relative h-96 sm:h-80 lg:h-48 rounded overflow-hidden"
                 href="product_page.html?id=${product.id}">
 
                 <img
@@ -52,7 +52,6 @@ function createProductCard(product) {
     `;
 }
 
-
 async function showProducts() {
 
     const products = await fatchData();
@@ -63,6 +62,5 @@ async function showProducts() {
         .map(product => createProductCard(product))
         .join("");
 }
-
 
 showProducts();

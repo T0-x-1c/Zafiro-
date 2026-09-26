@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zafiro — Кошик</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-clifford: #da373d;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f8f4ec] text-gray-800">
+    <!-- nawbar -->
+    <div id="nawbar"></div>
+
+    <!-- Main -->
+    <main class="max-w-6xl mx-auto px-6 py-10">
+
+        <h1 class="text-3xl font-semibold mb-8">
+            Ваш кошик
+        </h1>
+
+
+        <!-- Порожній кошик -->
+        <div id="emptyCart" class="hidden bg-white rounded-2xl shadow-sm p-12 text-center">
+
+            <div class="text-5xl mb-5">
+                🛒
+            </div>
+
+            <h2 class="text-2xl font-semibold mb-3">
+                Кошик порожній
+            </h2>
+
+            <p class="text-gray-500 mb-6">
+                Додайте годинник, щоб він з'явився тут.
+            </p>
+
+            <a href="index.html" class="inline-block bg-black text-white px-6 py-3 rounded-xl
+                        hover:bg-gray-800 transition">
+
+                Перейти до покупок
+
+            </a>
+
+        </div>
+
+
+        <!-- Контент кошика -->
+        <div id="cartContent" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+
+            <!-- ================================= -->
+            <!-- ТОВАРИ                            -->
+            <!-- ================================= -->
+
+            <div id="cartItems" class="lg:col-span-2 space-y-4">
+
+                <!--
+                    Сюди JavaScript автоматично
+                    додасть товари
+                -->
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- ПІДСУМОК                         -->
+            <!-- ================================= -->
+
+            <div class="bg-white rounded-2xl shadow-sm p-6 h-fit">
+
+                <h2 class="text-xl font-semibold mb-6">
+                    Підсумок
+                </h2>
+
+
+                <!-- Сума товарів -->
+
+                <div class="flex justify-between mb-3">
+                    <span class="text-gray-500">
+                        Товари
+                    </span>
+                    <span id="subtotal">
+                        $0.00
+                    </span>
+                </div>
+
+
+                <!-- Доставка -->
+                <div class="flex justify-between mb-5">
+                    <span class="text-gray-500">
+                        Доставка
+                    </span>
+                    <span>
+                        Безкоштовно
+                    </span>
+                </div>
+
+
+                <!-- Total -->
+
+                <div class="border-t pt-5 flex justify-between
+                            text-xl font-semibold">
+                    <span>
+                        Разом
+                    </span>
+
+                    <span id="total">
+                        $0.00
+                    </span>
+
+                </div>
+
+
+                <!-- Checkout -->
+
+                <button id="checkoutButton" class="w-full mt-6 bg-black text-white
+                            py-3 rounded-xl
+                            hover:bg-gray-800 transition">
+                    Оформити замовлення
+                </button>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Cart JS -->
+    <script src="./cart.js"></script>
+
+    <script>
+        fetch('nawbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nawbar').innerHTML = data;
+            })
+    </script>
+</body>
+
+</html>
