@@ -47,6 +47,7 @@ async function fetchProduct() {
     const product = data[0];
 
     displayProduct(product);
+    showCharacteristics(product);
 }
 
 
@@ -115,6 +116,207 @@ function successMessage() {
 }
 
 
+// ==========================================
+// TABS
+// ==========================================
+
+const descriptionTab =
+    document.getElementById("description-tab");
+
+const characteristicsTab =
+    document.getElementById("characteristics-tab");
+
+const descriptionContent =
+    document.getElementById("description-content");
+
+const characteristicsContent =
+    document.getElementById("characteristics-content");
+
+
+descriptionTab.addEventListener("click", () => {
+
+    // Показуємо description
+    descriptionContent.classList.remove("hidden");
+
+    // Ховаємо characteristics
+    characteristicsContent.classList.add("hidden");
+
+
+    // Активна вкладка
+    descriptionTab.classList.add(
+        "text-blue-600",
+        "border-blue-500"
+    );
+
+    descriptionTab.classList.remove(
+        "text-gray-700",
+        "border-transparent"
+    );
+
+
+    // Неактивна вкладка
+    characteristicsTab.classList.remove(
+        "text-blue-600",
+        "border-blue-500"
+    );
+
+    characteristicsTab.classList.add(
+        "text-gray-700",
+        "border-transparent"
+    );
+
+});
+
+
+characteristicsTab.addEventListener("click", () => {
+
+    // Ховаємо description
+    descriptionContent.classList.add("hidden");
+
+    // Показуємо characteristics
+    characteristicsContent.classList.remove("hidden");
+
+
+    // Активна вкладка
+    characteristicsTab.classList.add(
+        "text-blue-600",
+        "border-blue-500"
+    );
+
+    characteristicsTab.classList.remove(
+        "text-gray-700",
+        "border-transparent"
+    );
+
+
+    // Неактивна вкладка
+    descriptionTab.classList.remove(
+        "text-blue-600",
+        "border-blue-500"
+    );
+
+    descriptionTab.classList.add(
+        "text-gray-700",
+        "border-transparent"
+    );
+
+});
+
+
+// ==========================================
+// ХАРАКТЕРИСТИКИ ТОВАРУ
+// ==========================================
+
+function showCharacteristics(product) {
+
+    const container =
+        document.getElementById("product-characteristics");
+
+
+    container.innerHTML = "";
+
+
+    const characteristics = [
+
+        {
+            name: "Brand",
+            value: product.brand
+        },
+
+        {
+            name: "Category",
+            value: product.category
+        },
+
+        {
+            name: "Gender",
+            value: product.gender
+        },
+
+        {
+            name: "Movement",
+            value: product.movement
+        },
+
+        {
+            name: "Water resistance",
+            value: product.water_resistance
+        },
+
+        {
+            name: "Functions",
+            value: product.functions
+        },
+
+        {
+            name: "Case material",
+            value: product.case_material
+        },
+
+        {
+            name: "Strap material",
+            value: product.strap_material
+        },
+
+        {
+            name: "Glass",
+            value: product.glass
+        },
+
+        {
+            name: "Case size",
+            value: product.case_size
+        },
+
+        {
+            name: "Weight",
+            value: product.weight
+        }
+
+    ];
+
+
+    characteristics.forEach(item => {
+
+        // Не показуємо порожні характеристики
+        if (
+            item.value === null ||
+            item.value === undefined ||
+            item.value === ""
+        ) {
+            return;
+        }
+
+
+        const row =
+            document.createElement("div");
+
+
+        row.className =
+            "flex justify-between gap-4 py-3";
+
+
+        row.innerHTML = `
+
+            <span class="font-medium text-gray-700">
+                ${item.name}
+            </span>
+
+            <span class="text-gray-500 text-right">
+                ${item.value}
+            </span>
+
+        `;
+
+
+        container.appendChild(row);
+
+    });
+
+}
+
+
+
 // 1.Універсальна функція для збереження будь-яких даних (масивів/об'єктів) у
 function getJsonCookie(cookieName) {
     const allCookies = document.cookie.split('; ');
@@ -155,3 +357,4 @@ function addToCart(product) {
 }
 
 fetchProduct();
+

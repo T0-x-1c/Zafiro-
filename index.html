@@ -43,11 +43,19 @@
     <script src="script.js"></script>
 
     <script>
-        fetch('nawbar.html')
+        fetch('./nawbar.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('nawbar').innerHTML = data;
+                const navbar = document.getElementById('nawbar');
+
+                navbar.innerHTML = data;
+
+                // Ініціалізуємо Alpine для динамічно доданого navbar
+                Alpine.initTree(navbar);
             })
+            .catch(error => {
+                console.error('Помилка завантаження navbar:', error);
+            });
     </script>
 
 </body>

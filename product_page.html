@@ -20,121 +20,158 @@
 
 
 <body>
-        <!-- nawbar -->
+    <!-- nawbar -->
     <div id="nawbar"></div>
 
 
     <!-- Success Message -->
-    <div id="success-message" class="invisible fixed top-5 right-5 z-50 transform -translate-y-10 opacity-0 transition-all duration-300 ease-out pointer-events-none">
+    <div id="success-message"
+        class="invisible fixed top-5 right-5 z-50 transform -translate-y-10 opacity-0 transition-all duration-300 ease-out pointer-events-none">
 
-    <div class="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div class="flex items-center justify-center w-12 bg-emerald-500">
-            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-            </svg>
-        </div>
+        <div class="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div class="flex items-center justify-center w-12 bg-emerald-500">
+                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                </svg>
+            </div>
 
-        <div class="px-4 py-2 -mx-3">
-            <div class="mx-3">
-                <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
-                <p class="text-sm text-gray-600 dark:text-gray-200">Успішно додано в кошик!</p>
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-200">Успішно додано в кошик!</p>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 
     <section class="text-gray-600 body-font overflow-hidden">
-    <div class="container px-5 py-24 mx-auto">
+        <div class="container px-5 py-24 mx-auto">
 
-        <div class="lg:w-4/5 mx-auto flex flex-wrap">
+            <div class="lg:w-4/5 mx-auto flex flex-wrap">
 
-            <!-- Фото -->
-            <img
-                id="product-image"
-                alt=""
-                class="lg:w-1/2 w-full lg:h-auto h-64 object-contain object-center rounded"
-            >
+                <!-- Фото -->
+                <img id="product-image" alt=""
+                    class="lg:w-1/2 w-full lg:h-auto h-64 object-contain object-center rounded">
 
-            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
 
-                <!-- Категорія -->
-                <h2
-                    id="product-category"
-                    class="text-sm title-font text-gray-500 tracking-widest">
-                </h2>
+                    <!-- Категорія -->
+                    <h2 id="product-category" class="text-sm title-font text-gray-500 tracking-widest">
+                    </h2>
 
-                <!-- Назва -->
-                <h1
-                    id="product-name"
-                    class="text-gray-900 text-3xl title-font font-medium mb-1">
-                </h1>
+                    <!-- Назва -->
+                    <h1 id="product-name" class="text-gray-900 text-3xl title-font font-medium mb-1">
+                    </h1>
 
-                <!-- Оцінка -->
-                <div class="flex mb-4">
-                    <span class="text-gray-600">
-                        4 Reviews
-                    </span>
+                    <!-- Оцінка -->
+                    <div class="flex mb-4">
+                        <span class="text-gray-600">
+                            4 Reviews
+                        </span>
+                    </div>
+
+
+                    <!-- Tabs -->
+                    <section class="mt-6">
+
+                        <div class="flex border-b border-gray-200">
+
+                            <!-- Description -->
+                            <button id="description-tab" class="tab-button inline-flex items-center h-10 px-4 -mb-px
+                    text-sm text-blue-600 border-b-2 border-blue-500
+                    sm:text-base focus:outline-none">
+
+                                Description
+
+                            </button>
+
+
+                            <!-- Characteristics -->
+                            <button id="characteristics-tab" class="tab-button inline-flex items-center h-10 px-4 -mb-px
+                    text-sm text-gray-700 border-b-2 border-transparent
+                    sm:text-base focus:outline-none hover:border-gray-400">
+
+                                Characteristics
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- Description content -->
+                        <div id="description-content" class="py-5">
+
+                            <p id="product-description" class="leading-relaxed text-gray-600">
+                            </p>
+
+                        </div>
+
+
+                        <!-- Characteristics content -->
+                        <div id="characteristics-content" class="hidden py-5">
+
+                            <div id="product-characteristics" class="divide-y divide-gray-200">
+
+                                <!-- Сюди JS додасть характеристики -->
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+
+                    <!-- Опис -->
+                    <p id="product-description" class="leading-relaxed">
+                    </p>
+
+                    <!-- Наявність -->
+                    <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+
+                        <span class="mr-3">
+                            Наявність:
+                        </span>
+
+                        <span id="product-quantity"></span>
+
+                    </div>
+
+                    <!-- Ціна + кнопка -->
+                    <div class="flex">
+
+                        <span id="product-price" class="title-font font-medium text-2xl text-gray-900">
+                        </span>
+
+                        <button id="add-to-cart-button"
+                            class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                            Купити
+                        </button>
+
+                        <button
+                            class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
+                                </path>
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
                 </div>
-
-                <!-- Опис -->
-                <p
-                    id="product-description"
-                    class="leading-relaxed">
-                </p>
-
-                <!-- Наявність -->
-                <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-
-                    <span class="mr-3">
-                        Наявність:
-                    </span>
-
-                    <span id="product-quantity"></span>
-
-                </div>
-
-                <!-- Ціна + кнопка -->
-                <div class="flex">
-
-                    <span
-                        id="product-price"
-                        class="title-font font-medium text-2xl text-gray-900">
-                    </span>
-
-                    <button
-                        id="add-to-cart-button"
-                        class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                        Купити
-                    </button>
-
-                    <button
-                        class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-
-                        <svg
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            class="w-5 h-5"
-                            viewBox="0 0 24 24">
-
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
-                            </path>
-
-                        </svg>
-
-                    </button>
-
-                </div>
-
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <script src="./product_page.js"></script>
