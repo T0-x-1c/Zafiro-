@@ -1,11 +1,11 @@
 [
     {
-        "image": "./img/hero/sale.jpg",
+        "image": "./img/Seiko Prospex SSC935.jpg",
         "subtitle": "SPECIAL OFFER",
         "title": "Знижка до 15%",
         "description": "Спеціальні пропозиції на вибрані моделі.",
         "buttonText": "Переглянути",
-        "buttonLink": "./shop.html"
+        "buttonLink": "./index.html"
     },
     {
         "image": "./img/hero/casio.jpg",
@@ -13,14 +13,14 @@
         "title": "Класика на кожен день",
         "description": "Надійність, функціональність та впізнаваний дизайн.",
         "buttonText": "Дивитися CASIO",
-        "buttonLink": "./shop.html"
+        "buttonLink": "./index.html"
     },
     {
-        "image": "./img/hero/new.jpg",
+        "image": "./img/Seiko Presage SRPB41.jpg",
         "subtitle": "NEW ARRIVAL",
         "title": "Нова колекція",
         "description": "Нові моделі вже доступні в Zafiro.",
         "buttonText": "Переглянути",
-        "buttonLink": "./shop.html"
+        "buttonLink": "./index.html"
     }
 ]

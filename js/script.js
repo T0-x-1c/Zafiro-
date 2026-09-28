@@ -22,7 +22,7 @@ function createProductCard(product) {
         <div class="lg:w-1/4 md:w-1/2 p-4 w-full max-w-[360px]">
 
             <a class="block relative h-96 sm:h-80 lg:h-48 rounded overflow-hidden"
-                href="product_page.html?id=${product.id}">
+                href="./product_page.html?id=${product.id}">
 
                 <img
                     alt="${product.name}"

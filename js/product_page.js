@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://ooogltaidyqjxtuqtucx.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KiFzA_mnt6G1TisM8J3Pyw_98vE2_Vz";
 
-let cart = []
+let cart = getJsonCookie("cart") || [];
 
 async function fetchProduct() {
 
@@ -325,7 +325,7 @@ function getJsonCookie(cookieName) {
     if (targetCookie) {
 
         const encodedData = targetCookie.split('=')[1];
-        return JSON.parse(decodeURICompoіnent(encodedData));
+        return JSON.parse(decodeURIComponent(encodedData));
     }
     return null;
 }

@@ -7,19 +7,11 @@
     <title>Zafiro</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <script
         defer
         src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3.x.x/dist/cdn.min.js">
     </script>
-    <style type="text/tailwindcss">
-        @theme {
-            --color-clifford: #da373d;
-        }
-    </style>
-
 </head>
 
 <!-- nawbar -->
@@ -27,7 +19,7 @@
 
 <body>
     <!-- nawbar -->
-    <div id="nawbar"></div>
+    <div id="navbar"></div>
 
 
     <!-- Success Message -->
@@ -132,10 +124,6 @@
 
 
 
-                    <!-- Опис -->
-                    <p id="product-description" class="leading-relaxed">
-                    </p>
-
                     <!-- Наявність -->
                     <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
 
@@ -180,13 +168,13 @@
     </section>
 
 
-    <script src="./product_page.js"></script>
+    <script src="./js/product_page.js"></script>
 
     <script>
-        fetch('nawbar.html')
+        fetch('./partials/nawbar.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('nawbar').innerHTML = data;
+            document.getElementById('navbar').innerHTML = data;
             })
     </script>
 </body>
