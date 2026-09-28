@@ -7,13 +7,17 @@
     <title>Zafiro</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script
+        defer
+        src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3.x.x/dist/cdn.min.js">
+    </script>
+
     <style type="text/tailwindcss">
         @theme {
             --color-clifford: #da373d;
         }
     </style>
-
 </head>
 
 <body>
@@ -21,6 +25,8 @@
     <!-- nawbar -->
     <div id="nawbar"></div>
 
+    <div id="slider"></div>
+    
     <section class="text-gray-600 body-font">
 
     <div class="container px-5 py-24 mx-auto">
@@ -46,15 +52,28 @@
         fetch('./nawbar.html')
             .then(response => response.text())
             .then(data => {
-                const navbar = document.getElementById('nawbar');
-
-                navbar.innerHTML = data;
-
-                // Ініціалізуємо Alpine для динамічно доданого navbar
-                Alpine.initTree(navbar);
+                document.getElementById('nawbar').innerHTML = data;
             })
             .catch(error => {
                 console.error('Помилка завантаження navbar:', error);
+            });
+    </script>
+
+    <script>
+        fetch('./slider.html')
+            .then(response => response.text())
+            .then(data => {
+                const sliderContainer = document.getElementById('slider');
+                sliderContainer.innerHTML = data;
+
+                sliderContainer.querySelectorAll('script').forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.replaceWith(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Помилка завантаження slider:', error);
             });
     </script>
 

@@ -1,0 +1,26 @@
+[
+    {
+        "image": "./img/hero/sale.jpg",
+        "subtitle": "SPECIAL OFFER",
+        "title": "Знижка до 15%",
+        "description": "Спеціальні пропозиції на вибрані моделі.",
+        "buttonText": "Переглянути",
+        "buttonLink": "./shop.html"
+    },
+    {
+        "image": "./img/hero/casio.jpg",
+        "subtitle": "CASIO",
+        "title": "Класика на кожен день",
+        "description": "Надійність, функціональність та впізнаваний дизайн.",
+        "buttonText": "Дивитися CASIO",
+        "buttonLink": "./shop.html"
+    },
+    {
+        "image": "./img/hero/new.jpg",
+        "subtitle": "NEW ARRIVAL",
+        "title": "Нова колекція",
+        "description": "Нові моделі вже доступні в Zafiro.",
+        "buttonText": "Переглянути",
+        "buttonLink": "./shop.html"
+    }
+]
