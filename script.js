@@ -52,15 +52,118 @@ function createProductCard(product) {
     `;
 }
 
+const filterFields = [
+    { key: "brand", label: "Бренд" },
+    { key: "category", label: "Категорія" },
+    { key: "gender", label: "Стать" },
+    { key: "movement", label: "Механізм" },
+    { key: "water_resistance", label: "Водозахист" },
+    { key: "functions", label: "Функції" },
+    { key: "case_material", label: "Матеріал корпусу" },
+    { key: "strap_material", label: "Матеріал ремінця" },
+    { key: "glass", label: "Скло" },
+    { key: "case_size", label: "Розмір корпусу" },
+    { key: "weight", label: "Вага" },
+];
+
+let allProducts = [];
+
+function getFilterValue(product, key) {
+    return String(product[key] ?? "").trim();
+}
+
+function createFilterGroups(products) {
+    const groups = document.getElementById("filter-groups");
+
+    groups.innerHTML = filterFields.map(({ key, label }) => {
+        const values = [...new Set(products
+            .map(product => getFilterValue(product, key))
+            .filter(Boolean))].sort((first, second) => first.localeCompare(second, "uk"));
+
+        if (!values.length) return "";
+
+        return `
+            <fieldset>
+                <legend class="mb-3 text-sm font-semibold text-gray-800">${label}</legend>
+                <div class="max-h-40 space-y-2 overflow-y-auto pr-1">
+                    ${values.map(value => `
+                        <label class="flex cursor-pointer items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
+                            <input type="checkbox" class="filter-option h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900" data-filter-key="${key}" value="${value.replace(/"/g, "&quot;")}">
+                            <span>${value}</span>
+                        </label>
+                    `).join("")}
+                </div>
+            </fieldset>
+        `;
+    }).join("");
+
+    groups.querySelectorAll(".filter-option").forEach(input => {
+        input.addEventListener("change", renderFilteredProducts);
+    });
+}
+
+function renderFilteredProducts() {
+    const search = document.getElementById("product-search").value.trim().toLocaleLowerCase("uk");
+    const minPrice = Number(document.getElementById("price-min").value) || 0;
+    const maxPriceValue = document.getElementById("price-max").value;
+    const maxPrice = maxPriceValue === "" ? Infinity : Number(maxPriceValue);
+    const selected = {};
+
+    document.querySelectorAll(".filter-option:checked").forEach(input => {
+        const key = input.dataset.filterKey;
+        selected[key] ??= [];
+        selected[key].push(input.value);
+    });
+
+    let filteredProducts = allProducts.filter(product => {
+        const searchableText = `${product.name ?? ""} ${product.brand ?? ""}`.toLocaleLowerCase("uk");
+        const matchesSearch = !search || searchableText.includes(search);
+        const price = Number(product.price) || 0;
+        const matchesPrice = price >= minPrice && price <= maxPrice;
+        const matchesOptions = Object.entries(selected).every(([key, values]) => values.includes(getFilterValue(product, key)));
+
+        return matchesSearch && matchesPrice && matchesOptions;
+    });
+
+    const sort = document.getElementById("sort-products").value;
+    if (sort === "price-asc") filteredProducts.sort((a, b) => Number(a.price) - Number(b.price));
+    if (sort === "price-desc") filteredProducts.sort((a, b) => Number(b.price) - Number(a.price));
+    if (sort === "name-asc") filteredProducts.sort((a, b) => String(a.name).localeCompare(String(b.name), "uk"));
+
+    document.getElementById("products-container").innerHTML = filteredProducts.map(createProductCard).join("");
+    document.getElementById("products-count").textContent = `Знайдено: ${filteredProducts.length}`;
+    document.getElementById("empty-products").classList.toggle("hidden", filteredProducts.length > 0);
+}
+
+function clearFilters() {
+    document.getElementById("product-search").value = "";
+    document.getElementById("price-min").value = "";
+    document.getElementById("price-max").value = "";
+    document.getElementById("sort-products").value = "default";
+    document.querySelectorAll(".filter-option").forEach(input => {
+        input.checked = false;
+    });
+    renderFilteredProducts();
+}
+
 async function showProducts() {
 
-    const products = await fatchData();
-
-    const container = document.getElementById("products-container");
-
-    container.innerHTML = products
-        .map(product => createProductCard(product))
-        .join("");
+    allProducts = await fatchData();
+    createFilterGroups(allProducts);
+    renderFilteredProducts();
 }
+
+document.getElementById("product-search").addEventListener("input", renderFilteredProducts);
+document.getElementById("price-min").addEventListener("input", renderFilteredProducts);
+document.getElementById("price-max").addEventListener("input", renderFilteredProducts);
+document.getElementById("sort-products").addEventListener("change", renderFilteredProducts);
+document.getElementById("clear-filters").addEventListener("click", clearFilters);
+
+document.getElementById("filters-toggle").addEventListener("click", () => {
+    const button = document.getElementById("filters-toggle");
+    const panel = document.getElementById("filters-panel");
+    const isOpen = !panel.classList.toggle("hidden");
+    button.setAttribute("aria-expanded", String(isOpen));
+});
 
 showProducts();
