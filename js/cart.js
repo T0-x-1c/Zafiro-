@@ -171,7 +171,7 @@ function renderCart(products) {
                         justify-center flex-shrink-0">
 
                 <img
-                    src="./img/${product.name}.jpg"
+                    src="./img/${product.name}.png"
                     alt="${product.name}"
                     class="max-h-24 max-w-full object-contain">
 

@@ -38,7 +38,7 @@ function createProductCard(product) {
                 <img
                     alt="${product.name}"
                     class="object-cover object-center w-full h-full block"
-                    src="./img/${product.name}.jpg"
+                    src="./img/${product.name}.png"
                 >
 
             </a>

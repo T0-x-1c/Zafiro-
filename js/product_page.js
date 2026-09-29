@@ -54,7 +54,7 @@ async function fetchProduct() {
 function displayProduct(product) {
 
     document.getElementById("product-image").src =
-    `./img/${product.name}.jpg`;
+    `./img/${product.name}.png`;
 
     document.getElementById("product-image").alt =
         product.name;
