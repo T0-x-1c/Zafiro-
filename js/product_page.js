@@ -72,8 +72,16 @@ function displayProduct(product) {
         product.description ?? "Опис відсутній";
 
 
-    document.getElementById("product-price").textContent =
-        `$${product.price}`;
+    const productPrice = Number(product.price);
+    const oldPrice = Number(product.old_price);
+    const hasDiscount = Boolean(product.discount) && oldPrice > productPrice;
+    const priceElement = document.getElementById("product-price");
+    const oldPriceElement = document.getElementById("product-old-price");
+
+    priceElement.textContent = `$${product.price}`;
+    priceElement.classList.toggle("text-rose-700", hasDiscount);
+    oldPriceElement.textContent = hasDiscount ? `$${product.old_price}` : "";
+    oldPriceElement.classList.toggle("hidden", !hasDiscount);
 
 
     document.getElementById("product-quantity").textContent =

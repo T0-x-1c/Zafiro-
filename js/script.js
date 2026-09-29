@@ -16,7 +16,18 @@ async function fatchData() {
 
 fatchData()
 
+function isDiscounted(product) {
+    return Boolean(product.discount) && Number(product.old_price) > Number(product.price);
+}
+
 function createProductCard(product) {
+    const hasDiscount = isDiscounted(product);
+    const priceMarkup = hasDiscount
+        ? `<div class="mt-1 flex items-baseline gap-2">
+                <span class="font-medium text-rose-700">$${product.price}</span>
+                <span class="text-sm text-gray-500 line-through">$${product.old_price}</span>
+            </div>`
+        : `<p class="mt-1">$${product.price}</p>`;
 
     return `
         <div class="lg:w-1/4 md:w-1/2 p-4 w-full max-w-[360px]">
@@ -42,9 +53,7 @@ function createProductCard(product) {
                     ${product.name}
                 </h2>
 
-                <p class="mt-1">
-                    $${product.price}
-                </p>
+                ${priceMarkup}
 
             </div>
 
@@ -63,7 +72,6 @@ const filterFields = [
     { key: "strap_material", label: "Матеріал ремінця" },
     { key: "glass", label: "Скло" },
     { key: "case_size", label: "Розмір корпусу" },
-    { key: "weight", label: "Вага" },
 ];
 
 let allProducts = [];
@@ -107,6 +115,7 @@ function renderFilteredProducts() {
     const minPrice = Number(document.getElementById("price-min").value) || 0;
     const maxPriceValue = document.getElementById("price-max").value;
     const maxPrice = maxPriceValue === "" ? Infinity : Number(maxPriceValue);
+    const onlyDiscounted = document.getElementById("discount-filter").checked;
     const selected = {};
 
     document.querySelectorAll(".filter-option:checked").forEach(input => {
@@ -120,9 +129,10 @@ function renderFilteredProducts() {
         const matchesSearch = !search || searchableText.includes(search);
         const price = Number(product.price) || 0;
         const matchesPrice = price >= minPrice && price <= maxPrice;
+        const hasDiscount = isDiscounted(product);
         const matchesOptions = Object.entries(selected).every(([key, values]) => values.includes(getFilterValue(product, key)));
 
-        return matchesSearch && matchesPrice && matchesOptions;
+        return matchesSearch && matchesPrice && (!onlyDiscounted || hasDiscount) && matchesOptions;
     });
 
     const sort = document.getElementById("sort-products").value;
@@ -139,6 +149,7 @@ function clearFilters() {
     document.getElementById("product-search").value = "";
     document.getElementById("price-min").value = "";
     document.getElementById("price-max").value = "";
+    document.getElementById("discount-filter").checked = false;
     document.getElementById("sort-products").value = "default";
     document.querySelectorAll(".filter-option").forEach(input => {
         input.checked = false;
@@ -156,6 +167,7 @@ async function showProducts() {
 document.getElementById("product-search").addEventListener("input", renderFilteredProducts);
 document.getElementById("price-min").addEventListener("input", renderFilteredProducts);
 document.getElementById("price-max").addEventListener("input", renderFilteredProducts);
+document.getElementById("discount-filter").addEventListener("change", renderFilteredProducts);
 document.getElementById("sort-products").addEventListener("change", renderFilteredProducts);
 document.getElementById("clear-filters").addEventListener("click", clearFilters);
 
