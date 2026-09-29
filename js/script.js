@@ -63,6 +63,7 @@ function createProductCard(product) {
 
 const filterFields = [
     { key: "brand", label: "Бренд" },
+    { key: "collection", label: "Колекція" },
     { key: "category", label: "Категорія" },
     { key: "gender", label: "Стать" },
     { key: "movement", label: "Механізм" },
@@ -107,6 +108,22 @@ function createFilterGroups(products) {
 
     groups.querySelectorAll(".filter-option").forEach(input => {
         input.addEventListener("change", renderFilteredProducts);
+    });
+}
+
+function applyUrlFilters() {
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("discount-filter").checked = params.get("discount") === "true";
+
+    filterFields.forEach(({ key }) => {
+        const requestedValues = params.getAll(key)
+            .map(value => value.trim().toLocaleLowerCase("uk"));
+
+        if (!requestedValues.length) return;
+
+        document.querySelectorAll(`.filter-option[data-filter-key="${key}"]`).forEach(input => {
+            input.checked = requestedValues.includes(input.value.trim().toLocaleLowerCase("uk"));
+        });
     });
 }
 
@@ -161,6 +178,7 @@ async function showProducts() {
 
     allProducts = await fatchData();
     createFilterGroups(allProducts);
+    applyUrlFilters();
     renderFilteredProducts();
 }
 

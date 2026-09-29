@@ -5,7 +5,7 @@
         "title": "Знижка до 15%",
         "description": "Спеціальні пропозиції на вибрані моделі.",
         "buttonText": "Переглянути",
-        "buttonLink": "./index.html"
+        "buttonLink": "./index.html?discount=true"
     },
     {
         "image": "./img/hero/casio.jpg",
@@ -13,7 +13,7 @@
         "title": "Класика на кожен день",
         "description": "Надійність, функціональність та впізнаваний дизайн.",
         "buttonText": "Дивитися CASIO",
-        "buttonLink": "./index.html"
+        "buttonLink": "./index.html?brand=Casio"
     },
     {
         "image": "./img/Seiko Presage SRPB41.jpg",
@@ -21,6 +21,6 @@
         "title": "Нова колекція",
         "description": "Нові моделі вже доступні в Zafiro.",
         "buttonText": "Переглянути",
-        "buttonLink": "./index.html"
+        "buttonLink": "./index.html?collection=new"
     }
 ]
