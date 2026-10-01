@@ -45,11 +45,6 @@
 
                 <a class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
                     href="#">
-                    Shop
-                </a>
-
-                <a class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                    href="#">
                     Contact
                 </a>
 
@@ -63,7 +58,17 @@
 
             <!-- Cart -->
 
-            <div class="flex justify-center md:block shrink-0">
+            <div class="flex items-center justify-center gap-5 md:ml-4 shrink-0">
+
+                <button id="navbar-search-open" type="button"
+                    class="text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400"
+                    aria-label="Пошук товарів" aria-haspopup="dialog">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-4-4" />
+                    </svg>
+                </button>
 
                 <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                     href="cart.html">
@@ -91,6 +96,29 @@
         </div>
 
     </div>
+
+    <dialog id="navbar-search-dialog" class="fixed left-1/2 top-1/2 m-0 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg p-0 shadow-xl backdrop:bg-black/40 backdrop:backdrop-blur-sm">
+        <form id="navbar-search-form" class="p-6">
+            <div class="mb-5 flex items-center justify-between gap-4">
+                <h2 class="text-lg font-semibold text-gray-900">Пошук товарів</h2>
+                <button id="navbar-search-close" type="button"
+                    class="rounded p-1 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
+                    aria-label="Закрити пошук">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m18 6-12 12M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <label for="navbar-search-input" class="sr-only">Назва або бренд</label>
+            <input id="navbar-search-input" type="search" required placeholder="Введіть назву або бренд"
+                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900">
+            <button type="submit"
+                class="mt-4 w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700">
+                Шукати
+            </button>
+        </form>
+    </dialog>
 
 </nav>
 

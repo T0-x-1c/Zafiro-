@@ -113,6 +113,7 @@ function createFilterGroups(products) {
 
 function applyUrlFilters() {
     const params = new URLSearchParams(window.location.search);
+    document.getElementById("product-search").value = params.get("search") ?? "";
     document.getElementById("discount-filter").checked = params.get("discount") === "true";
 
     filterFields.forEach(({ key }) => {
